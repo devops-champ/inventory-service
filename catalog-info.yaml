@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: inventory-service
+  description: Sample service with CI/CD
+  annotations:
+    devlake.io/project-name: inventory-service
+    github.com/project-slug: devops-champ/inventory-service
+    backstage.io/techdocs-ref: dir:.
+    sonarqube.org/project-key: devops-champ_inventory-service
+    roadie-backstage-pull-requests/default-filter: "is:open is:pr"
+    platform.io/argocd-dev: inventory-service-dev
+    platform.io/argocd-qa: inventory-service-qa
+    platform.io/argocd-prod: inventory-service-prod
+    grafana/log-namespace: inventory-service-dev
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:default/platform-team
+  dependsOn:
+    - resource:default/orders-db
+    - resource:default/kafka-cluster
+  platform:
+    AppId: INT-123
+    ApprovedJiraId: JIRA-123
+    BusinessUnit: Marketing
+    SupportTeam: DEVOPS
+    CloudBudgetTicket: CR-123
+  infrastructure:
+    environments:
+      - name: dev
+        projectId: devops-champ
+      - name: qa
+        projectId: devops-champ
+      - name: prod  
+        projectId: devops-champ
