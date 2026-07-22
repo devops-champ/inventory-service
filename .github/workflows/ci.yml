@@ -96,7 +96,7 @@ jobs:
       - name: Create Git Tag
         run: |
           VERSION="${{ needs.setversion.outputs.new_version }}"
-          TAG="v${VERSION}"
+          TAG="${VERSION}"
 
           if git rev-parse "$TAG" >/dev/null 2>&1; then
             echo "Tag already exists."
