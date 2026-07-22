@@ -447,7 +447,7 @@ jobs:
 
           echo "PR Title: $PR_TITLE"
 
-          JIRA=$(echo "$PR_TITLE" | grep -oE 'CORE-[0-9]+')
+          JIRA=$(echo "$PR_TITLE" | grep -oE '(CORE|DEVOPS|OPS|JIRA)-[0-9]+')
 
           if [ -z "$JIRA" ]; then
             echo "No Jira ID found in PR title."
